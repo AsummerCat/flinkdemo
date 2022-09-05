@@ -11,8 +11,6 @@ object NoBoundedSteamWordCount {
     //1.创建一个流式执行环境
     val environment = StreamExecutionEnvironment.getExecutionEnvironment
 
-
-
     //1.1 模拟从main启动类参数中获取参数 flink提供的API
     val hostName = ParameterTool.fromArgs(args).get("hostName")
     val port = ParameterTool.fromArgs(args).get("port")
