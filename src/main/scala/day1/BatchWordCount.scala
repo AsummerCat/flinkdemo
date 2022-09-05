@@ -2,6 +2,9 @@ package day1
 
 import org.apache.flink.api.scala.{ExecutionEnvironment, createTypeInformation}
 
+/**
+ * 使用最基础的语法 编写批处理flink
+ */
 object BatchWordCount {
   def main(args: Array[String]): Unit = {
     //1.创建执行环境并配置并行度
