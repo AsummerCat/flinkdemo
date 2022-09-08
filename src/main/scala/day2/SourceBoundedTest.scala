@@ -41,6 +41,9 @@ object SourceBoundedTest {
     properties.setProperty("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer")
     properties.setProperty("auto.offset.reset", "latest")
     //创建一个 FlinkKafkaConsumer 对象，传入必要参数，从 Kafka 中读取数据
+    //第一个参数: 主题TOP
+    //第二个参数: 反序列化方式  使用的 SimpleStringSchema，是一个内置的 DeserializationSchema
+    //第三个参数: 第三个参数是一个 Properties 对象，设置了 Kafka 客户端的一些属性
     val kafkaStream = env.addSource(new FlinkKafkaConsumer[String]("clicks", new SimpleStringSchema(), properties))
     kafkaStream.print("kafka")
 
