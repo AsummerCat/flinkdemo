@@ -17,6 +17,6 @@ object SourceBoundedTest {
     env.execute("算子测试用例");
   }
 
-  //新增样例类
-  case class Event(user: String, url: String, timestamp: Long)
 }
+//新增样例类
+case class Event(user: String, url: String, timestamp: Long)
