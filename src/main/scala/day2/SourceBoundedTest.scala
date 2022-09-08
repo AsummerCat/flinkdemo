@@ -48,7 +48,7 @@ object SourceBoundedTest {
     kafkaStream.print("kafka")
 
 
-    env.execute("算子测试用例");
+    env.execute("获取内置数据源测试用例");
   }
 
 }
