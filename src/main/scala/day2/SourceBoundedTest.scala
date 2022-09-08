@@ -21,9 +21,9 @@ object SourceBoundedTest {
     value.print()
 
     //3.从指定列表读取数据
-    val value1 = env.fromCollection(List(Event("Mary", "/.home", 1000L), Event("Bob", "/.cart", 2000L)))
+    val value1 = env.fromCollection(List(Event1("Mary", "/.home", 1000L), Event1("Bob", "/.cart", 2000L)))
     //3.1 我们也可以不构建集合，直接将元素列举出来，调用 fromElements 方法进行读取数据：
-    val value2 = env.fromElements(Event("Mary", "/.home", 1000L), Event("Bob", "/.cart", 2000L))
+    val value2 = env.fromElements(Event1("Mary", "/.home", 1000L), Event1("Bob", "/.cart", 2000L))
     value1.print()
 
     //4.从文件读取数据 可以是目录,也可以是文件
@@ -54,4 +54,4 @@ object SourceBoundedTest {
 }
 
 //新增样例类
-case class Event(user: String, url: String, timestamp: Long)
+case class Event1(user: String, url: String, timestamp: Long)
