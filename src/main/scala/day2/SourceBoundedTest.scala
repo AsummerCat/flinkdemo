@@ -11,7 +11,7 @@ object SourceBoundedTest {
     val env = StreamExecutionEnvironment.getExecutionEnvironment
 
     //2.从指定元素中读取数据
-    val value = env.fromElements(1, 2, 3, 4)
+    val value:DataStream[Int] = env.fromElements(1, 2, 3, 4)
     value.print()
 
     env.execute("算子测试用例");
