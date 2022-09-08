@@ -13,7 +13,7 @@ object NoBoundedSteamWordCount {
 
     //1.1 模拟从main启动类参数中获取参数 flink提供的API
     val hostName = ParameterTool.fromArgs(args).get("hostName")
-    val port = ParameterTool.fromArgs(args).get("port")
+    val port:Int = ParameterTool.fromArgs(args).get("port").toInt
 
     //2.模拟监听端口发送数据 表示获取实时的数据 ->无界数据流
     val lineDataStream = environment.socketTextStream(hostName, port)
