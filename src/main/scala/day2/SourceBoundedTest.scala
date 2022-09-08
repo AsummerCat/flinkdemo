@@ -8,6 +8,12 @@ import org.apache.flink.streaming.api.scala._
 object SourceBoundedTest {
   def main(args: Array[String]): Unit = {
     //1.创建一个流式执行环境
-    val environment = StreamExecutionEnvironment.getExecutionEnvironment
+    val env = StreamExecutionEnvironment.getExecutionEnvironment
+
+    //2.从指定元素中读取数据
+    val value = env.fromElements(1, 2, 3, 4)
+    value.print()
+
+    env.execute("算子测试用例");
   }
 }
