@@ -11,7 +11,7 @@ object BoundedSteamWordCount {
     val environment = StreamExecutionEnvironment.getExecutionEnvironment
 
     //2.读取文本文件数据 获取DataStream
-    val lineDataStream = environment.readTextFile("input/words.txt")
+    val lineDataStream = environment.readTextFile("src\\input\\words.txt")
 
     //3.对数据进行格式转换
     val wordAndOne = lineDataStream.flatMap(_.split(" ")).map(r => (r, 1))
