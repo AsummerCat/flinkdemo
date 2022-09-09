@@ -43,7 +43,7 @@ object TransAggregationCaseClass {
       Event("Mary", "b", 9000L)
     )
     //注意这里是有限流输入的 所以每次都会输出记录
-    // 使用 user 作为分组的字段，并计算最大的时间戳
+    // 使用 user 作为分组的字段，并计算最大的时间戳  会更新maxBy中对应的数据
     stream.keyBy(_.user).maxBy("timestamp").print()
     env.execute()
   }
