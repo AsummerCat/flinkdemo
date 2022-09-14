@@ -52,5 +52,9 @@ object WaterMarkInnerTest {
           }
         )
     )
+
+    //事实上,有序流的水位线生成器本质上和乱序流是一样的，相当于延迟设为0的乱序流水位线生成器，两者完全等同：
+    //WatermarkStrategy.forMonotonousTimestamps()
+    //WatermarkStrategy.forBoundedOutOfOrderness(Duration.ofSeconds(0))
   }
 }
