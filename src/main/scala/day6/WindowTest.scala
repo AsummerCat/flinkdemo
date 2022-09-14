@@ -7,7 +7,7 @@ import org.apache.flink.streaming.api.windowing.assigners.{SlidingProcessingTime
 import org.apache.flink.streaming.api.windowing.time.Time
 
 /**
- * 滑动窗口
+ * 滑动处理器
  * 1.窗口处理器
  * 2.窗口函数
  */
