@@ -38,11 +38,20 @@ object LastDataWaterTest {
           }
         )
     )
+
+    // 定义侧输出流标签
+    val outputTag = OutputTag[Event]("late")
+
     val result = stream
       .keyBy(_.url)
       .window(TumblingEventTimeWindows.of(Time.seconds(10)))
       // 方式二：允许窗口处理迟到数据，设置 1 分钟的等待时间
       .allowedLateness(Time.minutes(1))
+      // 方式三：将最后的迟到数据输出到侧输出流
+      .sideOutputLateData(outputTag)
+
+
+    env.execute()
 
 
   }
