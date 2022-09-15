@@ -4,6 +4,7 @@ import day2.Event
 import org.apache.flink.api.common.functions.{RichFlatMapFunction, RuntimeContext}
 import org.apache.flink.api.common.state.{MapState, MapStateDescriptor, StateTtlConfig}
 import org.apache.flink.api.common.time.Time
+import org.apache.flink.api.scala.createTypeInformation
 import org.apache.flink.configuration.Configuration
 import org.apache.flink.streaming.api.scala.StreamExecutionEnvironment
 import org.apache.flink.util.Collector
@@ -45,6 +46,8 @@ object TtlTest {
       //默认OnCreateAndWrite
       .setUpdateType(StateTtlConfig.UpdateType.OnCreateAndWrite)
       //3.设置状态的可见性。所谓的“状态可见性”
+      //NeverReturnExpired  失效就返回空
+      //ReturnExpiredIfNotCleanedUp 失效后未被及时clear,还会返回数据
       .setStateVisibility(StateTtlConfig.StateVisibility.NeverReturnExpired)
       .build()
 
