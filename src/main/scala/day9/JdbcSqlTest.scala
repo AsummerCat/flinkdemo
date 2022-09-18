@@ -1,9 +1,9 @@
 package day8
 
 /**
- * SQL语法连接外部的Kafka
+ * SQL语法连接外部的mysql数据库
  */
-object KafkaSqlTest {
+object JdbcSqlTest {
   def main(args: Array[String]): Unit = {
     val eventStream = env
       .fromElements(
@@ -19,19 +19,20 @@ object KafkaSqlTest {
     // 将数据流转换成表
     val eventTable = tableEnv.fromDataStream(eventStream)
 
+    //这里在 WITH 前使用了 PARTITIONED BY 对数据进行了分区操作。文件系统连接器支持
+    //对分区文件的访问。
   tableEnv.executeSql("""
-    CREATE TABLE KafkaTable (
-      `user` STRING,
-      `url` STRING,
-      `ts` TIMESTAMP(3) METADATA FROM 'timestamp'
-    ) WITH (
-      'connector' = 'kafka',
-    'topic' = 'events',
-    'properties.bootstrap.servers' = 'localhost:9092',
-    'properties.group.id' = 'testGroup',
-    'scan.startup.mode' = 'earliest-offset',
-    'format' = 'csv'
-    )
+CREATE TABLE MyTable (
+ id BIGINT,
+ name STRING,
+ age INT,
+ status BOOLEAN,
+ PRIMARY KEY (id) NOT ENFORCED
+) WITH (
+ 'connector' = 'jdbc',
+ 'url' = 'jdbc:mysql://localhost:3306/mydatabase',
+ 'table-name' = 'users'
+);
     """)
 
     // 将表转换成数据流，打印输出
